@@ -116,7 +116,7 @@ public class ElasticsearchUtils {
 
         IndexResponse response = client.prepareIndex(index, type, id).setSource(jsonObject).get();
 
-        LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
+//        LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
 
         return response.getId();
     }
