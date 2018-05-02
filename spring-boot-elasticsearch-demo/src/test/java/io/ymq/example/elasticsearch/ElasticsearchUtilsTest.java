@@ -61,7 +61,7 @@ public class ElasticsearchUtilsTest {
         for (int i = 0; i < 100; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
 
-            map.put("name", "鹏磊" + i);
+            map.put("name", "add~~~" + i);
             map.put("age", i);
             map.put("interests", new String[]{"阅读", "学习"});
             map.put("about", "世界上没有优秀的理念，只有脚踏实地的结果");
@@ -69,6 +69,12 @@ public class ElasticsearchUtilsTest {
 
             ElasticsearchUtils.addData(JSONObject.parseObject(JSONObject.toJSONString(map)), "ymq_index", "about_test", "id=" + i);
         }
+    }
+
+    @Test
+    public void helloWorld() {
+
+        System.out.println("Hello World!");
     }
 
     /**
@@ -116,6 +122,23 @@ public class ElasticsearchUtilsTest {
     public void searchDataByIdTest() {
         Map<String, Object> map = ElasticsearchUtils.searchDataById("ymq_index", "about_test", "id=11", null);
         System.out.println(JSONObject.toJSONString(map));
+    }
+
+    @Test
+    public void searchPatentByIdTest() {
+        Map<String, Object> map2 = ElasticsearchUtils.searchDataById("trs_test", "patent_test8",
+                "id=1", "申请号,申请日");
+//        System.out.println(JSONObject.toJSONString(map2));
+        List<Map<String, Object>> list = ElasticsearchUtils.searchListData("patent", "fmsq_100",0,
+                "申请号,申请日","patent_db=FMSQ");
+        for (Map<String, Object> map : list) {
+            Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, Object> entry = iterator.next();
+                System.out.print("[" + entry.getKey() + ":" + entry.getValue() + "]");
+            }
+            System.out.println();
+        }
     }
 
 
