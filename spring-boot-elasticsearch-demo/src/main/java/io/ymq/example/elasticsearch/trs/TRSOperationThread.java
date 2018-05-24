@@ -137,7 +137,7 @@ public class TRSOperationThread  extends Thread{
 		int i = 0;
 		for (Map<String, String> map : list) {
 			ElasticsearchUtils.addData(JSONObject.parseObject(JSONObject.toJSONString(map)),
-					"patent", "fmsq", "id=" + map.get("SYSID"));
+					"patent2", "fmsq", "id=" + map.get("SYSID"));
 			i++;
 			if(i % 10 == 0){
 				long consume = (System.currentTimeMillis() - start) / 1000;

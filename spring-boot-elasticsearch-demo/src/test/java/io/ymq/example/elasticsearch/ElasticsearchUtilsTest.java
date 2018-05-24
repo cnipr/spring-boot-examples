@@ -4,14 +4,12 @@ package io.ymq.example.elasticsearch;
 import com.alibaba.fastjson.JSONObject;
 import io.ymq.example.elasticsearch.run.Startup;
 import io.ymq.example.elasticsearch.utils.ElasticsearchUtils;
-
 import io.ymq.example.elasticsearch.utils.EsPage;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -129,8 +127,8 @@ public class ElasticsearchUtilsTest {
         Map<String, Object> map2 = ElasticsearchUtils.searchDataById("trs_test", "patent_test8",
                 "id=1", "申请号,申请日");
 //        System.out.println(JSONObject.toJSONString(map2));
-        List<Map<String, Object>> list = ElasticsearchUtils.searchListData("patent", "fmsq_100",0,
-                "申请号,申请日","patent_db=FMSQ");
+        List<Map<String, Object>> list = ElasticsearchUtils.searchListData("patent", "fmsq",0,
+                "申请号,申请日,申请（专利权）人","申请（专利权）人=＇海能达＇");
         for (Map<String, Object> map : list) {
             Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -140,6 +138,23 @@ public class ElasticsearchUtilsTest {
             System.out.println();
         }
     }
+
+//    @Test
+//    public void testJDBC() throws Exception {
+//        Properties properties = new Properties();
+//        properties.put("url", "jdbc:elasticsearch://127.0.0.1:9300/" + TestsConstants.TEST_INDEX);
+//        DruidDataSource dds = (DruidDataSource) ElasticSearchDruidDataSourceFactory.createDataSource(properties);
+//        Connection connection = dds.getConnection();
+//        PreparedStatement ps = connection.prepareStatement("SELECT  gender,lastname,age from  " + TestsConstants.TEST_INDEX + " where lastname='Heath'");
+//        ResultSet resultSet = ps.executeQuery();
+//        List<String> result = new ArrayList<String>();
+//        while (resultSet.next()) {
+//            System.out.println(resultSet.getString("lastname") + "," + resultSet.getInt("age") + "," + resultSet.getString("gender"))
+//        }
+//        ps.close();
+//        connection.close();
+//        dds.close();
+//    }
 
 
     /**
